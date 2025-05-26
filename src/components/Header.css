@@ -1,0 +1,11 @@
+#main-header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#header-logo {
+    color: #8c5b3f;
+}

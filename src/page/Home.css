@@ -1,0 +1,55 @@
+/* 식료품 선택 컴포넌트 스타일 */
+.commodity-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.commodity-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.commodity-select {
+    padding: 8px 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #495057;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    min-width: 120px;
+}
+
+.commodity-select:hover {
+    border-color: #8884d8;
+}
+
+.commodity-select:focus {
+    outline: none;
+    border-color: #8884d8;
+    box-shadow: 0 0 0 3px rgba(136, 132, 216, 0.1);
+}
+
+.commodity-select:disabled {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.loading-indicator {
+    font-size: 12px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.error-indicator {
+    font-size: 12px;
+    color: #dc3545;
+    font-weight: 500;
+}
