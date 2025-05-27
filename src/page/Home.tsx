@@ -32,15 +32,15 @@ const Home: React.FC = () => {
     const [selectedCommodity, setSelectedCommodity] = useState<CommodityType>("coffee");
     const [devMode, setDevMode] = useState<boolean>(true);
 
-    const getApiEndpoint = (commodity: CommodityType) => {
-        const base = devMode ? "/prediction-dev" : "/prediction";
+    const getApiEndpoint = (commodity: CommodityType, dev: boolean) => {
+        const base = dev ? "/prediction-dev" : "/prediction";
         return commodity === "coffee" ? base : `${base}/${commodity}`;
     };
 
     const fetchData = (commodity: CommodityType = selectedCommodity, dev: boolean = devMode) => {
         setLoading(true);
         setError("");
-        const endpoint = getApiEndpoint(commodity);
+        const endpoint = getApiEndpoint(commodity, dev);
         fetch(`http://127.0.0.1:8000${endpoint}`)
             .then((res) => {
                 if (!res.ok) {
@@ -68,7 +68,6 @@ const Home: React.FC = () => {
     const handleDevModeToggle = () => {
         setDevMode((prev) => {
             const newDev = !prev;
-            // dev 모드가 바뀌면 현재 선택된 commodity로 다시 fetch
             fetchData(selectedCommodity, newDev);
             return newDev;
         });
