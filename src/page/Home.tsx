@@ -103,10 +103,10 @@ const Home: React.FC = () => {
                         </select>
                     </div>
                     <div className="commodity-selector-right">
-                        {/* {loading && <span className="loading-indicator">로딩 중...</span>}
+                        {loading && <span className="loading-indicator">로딩 중...</span>}
                         {error && <span className="error-indicator">오류: {error}</span>}
                         <div className="devmode-toggle-wrapper">
-                            <span className="devmode-toggle-label">개발자 모드</span>
+                            <span className="devmode-toggle-label">단기간 예측 모델</span>
                             <input
                                 type="checkbox"
                                 id="devmode-toggle"
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
                                 <span className="devmode-toggle-slider" />
                             </label>
                             <span className="devmode-toggle-status">{devMode ? "ON" : "OFF"}</span>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
                 <Graph predictions={predictions} />
