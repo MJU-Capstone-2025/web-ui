@@ -2,9 +2,16 @@
 .commodity-selector {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     padding: 20px 0;
     margin-bottom: 20px;
+}
+
+.commodity-selector-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .commodity-label {
@@ -12,6 +19,7 @@
     font-weight: 600;
     color: #495057;
     white-space: nowrap;
+    margin-right: 12px;
 }
 
 .commodity-select {
@@ -52,4 +60,76 @@
     font-size: 12px;
     color: #dc3545;
     font-weight: 500;
+}
+
+.devmode-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+}
+
+.devmode-toggle-label {
+    font-size: 14px;
+    color: #495057;
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+.devmode-toggle-input {
+    display: none;
+}
+
+.devmode-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.devmode-toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: 0.2s;
+}
+
+.devmode-toggle-switch {
+    background: #dee2e6;
+    border-radius: 12px;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+
+.devmode-toggle-input:checked + .devmode-toggle-switch {
+    background: #8884d8;
+}
+
+.devmode-toggle-input:checked + .devmode-toggle-switch .devmode-toggle-slider {
+    left: 22px;
+    background: #fff;
+}
+
+.devmode-toggle-switch .devmode-toggle-slider {
+    left: 2px;
+}
+
+.devmode-toggle-status {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8884d8;
+    min-width: 28px;
+    text-align: center;
+}
+
+.devmode-toggle-input:disabled + .devmode-toggle-switch {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
