@@ -104,7 +104,7 @@ const Graph: React.FC<GraphProps> = ({ predictions }) => {
     }, [sortedData.length, displayCount]);
 
     return (
-        <div className="layout" id="graph-layout">
+        <div id="graph-layout">
             <div className="range-buttons">
                 <button
                     className={`range-button ${range === "2w" ? "active" : ""}`}

@@ -4,7 +4,7 @@ body {
         "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f8f9fa;
+    background-color: #f0f0f0;
 }
 
 code {
@@ -15,6 +15,7 @@ code {
     max-width: 780px;
     margin: 0 auto;
     background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
