@@ -1,3 +1,77 @@
 #news-layout {
-    height: 100vh;
+    padding: 30px 0 0 0;
+    min-height: 350px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 50px 0px;
+}
+
+#news-layout h3 {
+    color: #282c34;
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.news-list {
+    list-style: none;
+    padding: 0 30px;
+    margin: 0;
+}
+
+.news-item {
+    padding: 30px 0 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.news-title {
+    color: #2196f3;
+    font-size: 1.08rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.news-title:hover {
+    color: #ff5722;
+    text-decoration: underline;
+}
+
+.news-date {
+    color: #8884d8;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.news-direction {
+    color: #4caf50;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.news-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 18px 0 0 0;
+}
+
+.news-pagination button {
+    padding: 6px 14px;
+    border: 1px solid #8884d8;
+    border-radius: 4px;
+    background: #fff;
+    color: #8884d8;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.news-pagination button.active,
+.news-pagination button:disabled {
+    background: #8884d8;
+    color: #fff;
+    cursor: default;
 }

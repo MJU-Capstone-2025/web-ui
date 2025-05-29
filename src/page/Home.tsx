@@ -4,6 +4,30 @@ import Header from "../components/Header";
 import News from "../components/News";
 import "./Home.css";
 
+export interface NewsItem {
+    date: string;
+    title: string;
+    url: string;
+    is_price_related: boolean;
+    preprocessed_title: string;
+    positive_sentiment: number;
+    negative_sentiment: number;
+    neutral_sentiment: number;
+    rise_present: number;
+    increase_present: number;
+    jump_present: number;
+    surge_present: number;
+    climb_present: number;
+    fall_present: number;
+    drop_present: number;
+    decrease_present: number;
+    decline_present: number;
+    plunge_present: number;
+    weighted_positive_sentiment: number;
+    weighted_negative_sentiment: number;
+    predicted_price_direction: string;
+}
+
 interface PriceData {
     Date: string;
     Predicted_Price?: number;
@@ -25,12 +49,21 @@ const commodityOptions: CommodityOption[] = [
     { value: "soybean", label: "대두" },
 ];
 
+const NEWS_PER_PAGE = 5;
+
 const Home: React.FC = () => {
-    const [predictions, setPredictions] = useState<PriceData[]>([]);
+    const [predictions14, setPredictions14] = useState<PriceData[]>([]);
+    const [predictions7, setPredictions7] = useState<PriceData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");
     const [selectedCommodity, setSelectedCommodity] = useState<CommodityType>("coffee");
     const [devMode, setDevMode] = useState<boolean>(true);
+
+    // 뉴스 관련 상태
+    const [news, setNews] = useState<NewsItem[]>([]);
+    const [newsLoading, setNewsLoading] = useState<boolean>(true);
+    const [newsError, setNewsError] = useState<string>("");
+    const [newsPage, setNewsPage] = useState<number>(1);
 
     const getApiEndpoint = (commodity: CommodityType, dev: boolean) => {
         const base = dev ? "/prediction-dev" : "/prediction";
@@ -49,7 +82,8 @@ const Home: React.FC = () => {
                 return res.json();
             })
             .then((response) => {
-                setPredictions(response.data);
+                setPredictions14(response.data.prediction_result_14days || []);
+                setPredictions7(response.data.prediction_result_7days || []);
                 setLoading(false);
                 console.log(response.data);
             })
@@ -58,6 +92,29 @@ const Home: React.FC = () => {
                 setLoading(false);
             });
     };
+
+    // 뉴스 데이터 fetch
+    useEffect(() => {
+        setNewsLoading(true);
+        setNewsError("");
+        fetch("http://127.0.0.1:8000/news")
+            .then((res) => {
+                if (!res.ok) throw new Error("뉴스 API 오류");
+                return res.json();
+            })
+            .then((response) => {
+                setNews(response.data || []);
+                setNewsLoading(false);
+            })
+            .catch((err: Error) => {
+                setNewsError(err.message);
+                setNewsLoading(false);
+            });
+    }, []);
+
+    const totalNewsPages = Math.ceil(news.length / NEWS_PER_PAGE);
+    const pagedNews = news.slice((newsPage - 1) * NEWS_PER_PAGE, newsPage * NEWS_PER_PAGE);
+    const handleNewsPageChange = (page: number) => setNewsPage(page);
 
     const handleCommodityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newCommodity = event.target.value as CommodityType;
@@ -122,8 +179,15 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <Graph predictions={predictions} />
-                <News />
+                <Graph predictions14={predictions14} predictions7={predictions7} />
+                <News
+                    news={pagedNews}
+                    currentPage={newsPage}
+                    totalPages={totalNewsPages}
+                    onPageChange={handleNewsPageChange}
+                    loading={newsLoading}
+                    error={newsError}
+                />
             </div>
         </div>
     );
